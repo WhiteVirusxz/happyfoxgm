@@ -4,8 +4,13 @@ import View from '@vkontakte/vkui/dist/components/View/View';
 import { AdaptivityProvider, AppRoot } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
+import Smongoconnect from'./Mongocon';
+exports.FindDATA = FindDATA
+
 import Home from './panels/Home';
-import BuyFox from './panels/BuyFox';
+import Rules from './panels/Rules';
+import LB from './panels/LeaderBoard';
+import FindDATA from './FindDataUser';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
@@ -30,12 +35,19 @@ const App = () => {
 		setActivePanel(e.currentTarget.dataset.to);
 	};
 
+	//Mongodb connect
+	Smongoconnect
+	//FindData
+	FindDATA
+
 	return (
 		<AdaptivityProvider>
 			<AppRoot>
 				<View activePanel={activePanel}>
 					<Home id='home' fetchedUser={fetchedUser} go={go} />
-					<BuyFox id='buyfox' go={go} />
+					<Rules id='rules' go={go} />
+					<LB id="lrb" fetchedUser={fetchedUser} go={go} />
+					<FindDataUser fetchedUser={fetchedUser} />
 				</View>
 			</AppRoot>
 		</AdaptivityProvider>
